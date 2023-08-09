@@ -1,0 +1,53 @@
+name: Plant trees on your GitHub profile to make it look greener
+
+on:
+
+  push:
+    branches:
+      - main
+      
+  schedule:
+  - cron: "0 9,13,17 * * 1,2,3,4,5" # See https://crontab.guru/#0_9,13,17_*_*_1,2,3,4,5
+
+jobs:
+  auto_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DEBUG 
+        run: echo "::debug::Ref = ${{github.ref}}"
+      - uses: actions/checkout@v3      
+        with:
+         persist-credentials: false
+         fetch-depth: 0
+
+      - name: Update last planted
+        run: |
+          d=`date '+%Y-%m-%dT%H:%M:%SZ'`
+          echo $d > LAST_PLANTED
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "imam@fahru.my.id"
+          git config --local user.name "masfahru"
+          git add -A
+          
+          arr[0]="plant 🌱"
+          arr[1]="plant 🌳"
+          arr[2]="plant 🌴"
+          arr[3]="plant 🌲"
+          arr[4]="plant 🌵"
+          arr[5]="plant 🌿"
+          arr[6]="plant 🍀"
+          arr[7]="plant 🌾"
+          arr[8]="plant 🪴"
+          arr[9]="plant 🌻"
+          
+          rand=$[$RANDOM % ${#arr[@]}]
+          
+          git commit -m "${arr[$rand]}"
+          
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          directory: "."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
