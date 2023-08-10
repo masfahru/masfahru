@@ -31,16 +31,16 @@ jobs:
           git config --local user.name "masfahru"
           git add -A
           
-          arr[0]="plant 🌱"
-          arr[1]="plant 🌳"
-          arr[2]="plant 🌴"
-          arr[3]="plant 🌲"
-          arr[4]="plant 🌵"
-          arr[5]="plant 🌿"
-          arr[6]="plant 🍀"
-          arr[7]="plant 🌾"
-          arr[8]="plant 🪴"
-          arr[9]="plant 🌻"
+          arr[0]="🌱"
+          arr[1]="🌳"
+          arr[2]="🌴"
+          arr[3]="🌲"
+          arr[4]="🌵"
+          arr[5]="🌿"
+          arr[6]="🍀"
+          arr[7]="🌾"
+          arr[8]="🪴"
+          arr[9]="🌻"
           
           rand=$[$RANDOM % ${#arr[@]}]
           
