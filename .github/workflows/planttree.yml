@@ -7,7 +7,7 @@ on:
       - main
       
   schedule:
-  - cron: "0 9,13,17 * * 1,2,3,4,5" # See https://crontab.guru/#0_9,13,17_*_*_1,2,3,4,5
+  - cron: "0 2,6,10 * * 1,2,3,4,5" # See https://crontab.guru/#0_2,6,10_*_*_1,2,3,4,5
 
 jobs:
   auto_commit:
