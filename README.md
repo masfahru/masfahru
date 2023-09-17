@@ -2,3 +2,6 @@
 
 ![masfahru's top-langs](https://github-readme-stats-masfahru.vercel.app/api/top-langs/?username=masfahru&layout=compact&hide=html)
 
+Welcome, either you come from `Used by` section, [TechEmpower Framework Benchmark](https://github.com/TechEmpower/FrameworkBenchmarks/commits?author=masfahru), or somewhere else.
+
+I don't do fancy things. I'm just a father of a son who builds local startups.
