@@ -1,0 +1,37 @@
+name: Whole NPM
+
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: DEBUG 
+        run: echo "::debug::Ref = ${{github.ref}}"
+      - uses: actions/checkout@v3      
+        with:
+         persist-credentials: false
+         fetch-depth: 0
+      - uses: oven-sh/setup-bun@v1
+      - name: Generate package.json
+        run: bun run whole-npm.js
+      - name: Commit changes
+        run: |
+          git config --local user.email "imam@fahru.my.id"
+          git config --local user.name "masfahru"
+          git add -A
+          
+          git commit -m "🚀"
+          
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          branch: ${{ github.ref }}
+          directory: "."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      

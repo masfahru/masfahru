@@ -1,0 +1,6 @@
+{
+  "name": "masfahru",
+  "module": "index.ts",
+  "type": "module",
+  "dependencies": {}
+}
