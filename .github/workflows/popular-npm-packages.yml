@@ -1,4 +1,4 @@
-name: Whole NPM
+name: Get Popular NPM Packages
 
 on:
   schedule:
@@ -22,9 +22,9 @@ jobs:
       - name: Init bun project
         run: bun init -y
       - name: Install dependencies
-        run: bun add all-package-names@latest
+        run: bun add zod@latest
       - name: Generate new package.json
-        run: bun run whole-npm.js
+        run: bun run popular-npm-packages.js
       - name: Commit changes
         run: |
           git config --local user.email "imam@fahru.my.id"
