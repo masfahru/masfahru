@@ -1,18 +1,16 @@
-const packageJson = require("./package.json");
-const fs = require("fs");
-const currentDependencies = packageJson.dependencies;
+import packageJson from "./package.json";
+import fs from "fs";
+import { load } from "all-package-names";
 
-const json = await fetch("https://replicate.npmjs.com/_all_docs").then(res => res.json());
+await load().then(({ packageNames }) => {
+    const total = packageNames.length;
+    packageJson.dependencies = {};
 
-packageJson.dependencies = {};
+    for (let i = 0; i < total; i++) {
+        packageJson.dependencies[packageNames[i]] = 'latest';
+    }
+    console.log(`Found ${total} dependencies`);
+    fs.writeFileSync("package.json", JSON.stringify(packageJson, null, 2));
+});
 
-let foundNewDeps = 0;
-for (let i = 0; i < json.total_rows; i++) {
-  if (!currentDependencies[json.rows[i].id]) {
-    foundNewDeps++;
-  }
-
-  packageJson.dependencies[json.rows[i].id] = '*';
-}
-console.log(`Found ${foundNewDeps} new dependencies`);
-fs.writeFileSync("package.json", JSON.stringify(packageJson, null, 2));
+process.exit(0)

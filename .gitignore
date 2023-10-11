@@ -179,3 +179,6 @@ bun.lockb
 
 # tsconfig
 tsconfig.json
+
+# index.ts
+index.ts
